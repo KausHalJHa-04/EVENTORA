@@ -35,80 +35,96 @@ const Register = () => {
     };
 
     return (
-        <div className="max-w-md mx-auto mt-16 bg-white p-8 rounded-xl shadow-lg border border-gray-100">
-            <div className="text-center mb-8">
-                <h2 className="text-3xl font-extrabold text-gray-900 mb-2">Create an Account</h2>
-                <p className="text-gray-500">Join Eventora today</p>
-            </div>
+        <div className="min-h-[80vh] flex items-center justify-center px-4 py-12 text-white">
+            <div className="w-full max-w-md bg-white/[0.02] border border-white/10 p-8 md:p-10 rounded-3xl shadow-2xl backdrop-blur-md relative overflow-hidden group transition-all duration-500 hover:bg-white/[0.04]">
+                {/* Animated Background Glow */}
+                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-500 to-purple-500"></div>
 
-            {error && <div className="bg-red-50 text-red-600 p-3 rounded-lg mb-6 text-center shadow-inner border border-red-100">{error}</div>}
+                <div className="text-center mb-8 relative z-10">
+                    <h2 className="text-3xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-300 mb-3 tracking-tight">Create Account</h2>
+                    <p className="text-gray-400 font-medium">Join Eventora today and explore.</p>
+                </div>
 
-            <form onSubmit={handleSubmit} className="space-y-5">
-                {!showOTP ? (
-                    <>
-                        <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
-                            <input
-                                type="text"
-                                required
-                                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gray-700 transition shadow-sm"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                            />
+                {error && <div className="bg-red-500/10 text-red-400 p-4 rounded-xl mb-6 text-center border border-red-500/20 text-sm font-semibold">{error}</div>}
+
+                <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
+                    {!showOTP ? (
+                        <>
+                            <div className="space-y-1.5">
+                                <label className="block text-xs font-bold tracking-wide text-gray-400 uppercase">Full Name</label>
+                                <input
+                                    type="text"
+                                    required
+                                    placeholder="John Doe"
+                                    className="w-full bg-black/40 border border-white/10 px-5 py-3.5 rounded-xl text-white placeholder-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all duration-300 shadow-inner"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                />
+                            </div>
+                            <div className="space-y-1.5">
+                                <label className="block text-xs font-bold tracking-wide text-gray-400 uppercase">Email Address</label>
+                                <input
+                                    type="email"
+                                    required
+                                    placeholder="you@example.com"
+                                    className="w-full bg-black/40 border border-white/10 px-5 py-3.5 rounded-xl text-white placeholder-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all duration-300 shadow-inner"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                            </div>
+                            <div className="space-y-1.5">
+                                <label className="block text-xs font-bold tracking-wide text-gray-400 uppercase">Password</label>
+                                <input
+                                    type="password"
+                                    required
+                                    placeholder="••••••••"
+                                    className="w-full bg-black/40 border border-white/10 px-5 py-3.5 rounded-xl text-white placeholder-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all duration-300 shadow-inner"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                            </div>
+                        </>
+                    ) : (
+                        <div className="space-y-4">
+                            <p className="text-sm text-green-400 bg-green-500/10 p-4 rounded-xl border border-green-500/20 text-center font-medium">
+                                An OTP has been sent to your email. Please verify your account.
+                            </p>
+                            <div className="space-y-1.5">
+                                <label className="block text-xs font-bold tracking-wide text-gray-400 uppercase text-center">Verification Code (OTP)</label>
+                                <input
+                                    type="text"
+                                    required
+                                    placeholder="000000"
+                                    className="w-full bg-black/40 border border-white/10 px-5 py-4 rounded-xl text-white placeholder-gray-600 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all duration-300 shadow-inner font-black tracking-[0.5em] text-center text-2xl"
+                                    value={otp}
+                                    onChange={(e) => setOtp(e.target.value)}
+                                    maxLength="6"
+                                />
+                            </div>
                         </div>
-                        <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
-                            <input
-                                type="email"
-                                required
-                                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gray-700 transition shadow-sm"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-sm font-semibold text-gray-700 mb-2">Password</label>
-                            <input
-                                type="password"
-                                required
-                                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gray-700 transition shadow-sm"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                        </div>
-                    </>
-                ) : (
-                    <div>
-                        <p className="text-sm text-green-700 bg-green-50 p-3 mb-4 rounded border border-green-200">
-                            An OTP has been sent to your email. Please verify your account.
-                        </p>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">Verification Code (OTP)</label>
-                        <input
-                            type="text"
-                            required
-                            placeholder="6-digit code"
-                            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gray-700 transition shadow-sm font-bold tracking-widest text-center text-lg"
-                            value={otp}
-                            onChange={(e) => setOtp(e.target.value)}
-                            maxLength="6"
-                        />
-                    </div>
+                    )}
+
+                    <button
+                        type="submit"
+                        disabled={loading}
+                        className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 text-white font-bold py-4 rounded-xl transition-all duration-300 shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:-translate-y-1 mt-4 tracking-wide uppercase text-sm flex justify-center items-center h-14"
+                    >
+                        {loading ? (
+                            <span className="flex items-center gap-2">
+                                <span className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin"></span>
+                                Processing...
+                            </span>
+                        ) : (showOTP ? 'Verify & Complete' : 'Sign Up')}
+                    </button>
+                </form>
+
+                {!showOTP && (
+                    <p className="text-center mt-8 text-sm text-gray-400 relative z-10">
+                        Already have an account? <Link to="/login" className="text-indigo-400 font-bold hover:text-indigo-300 transition-colors ml-1">Sign in</Link>
+                    </p>
                 )}
-
-                <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full bg-gray-900 text-white font-bold py-3 rounded-lg hover:bg-black focus:ring-4 focus:ring-gray-200 transition shadow-md mt-4"
-                >
-                    {loading ? 'Processing...' : (showOTP ? 'Verify & Complete' : 'Sign Up')}
-                </button>
-            </form>
-
-            {!showOTP && (
-                <p className="text-center mt-6 text-gray-600">
-                    Already have an account? <Link to="/login" className="text-gray-900 font-bold hover:underline">Sign in</Link>
-                </p>
-            )}
+            </div>
         </div>
     );
 };
