@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'http://localhost:5000/api',
+    baseURL: 'https://eventora-8rh8.onrender.com',
 });
 
 api.interceptors.request.use((config) => {

@@ -41,7 +41,7 @@ const Home = () => {
     return (
         <div className="min-h-screen w-full bg-black text-white overflow-x-hidden">
             {/* HERO (FULL WIDTH) */}
-            <section className="relative w-full h-screen flex items-center justify-center px-4">
+            <section className="relative w-full h-[70vh] lg:h-[88vh] min-h-[500px] flex items-center justify-center px-4">
                 <div className="absolute inset-0 overflow-hidden">
                     <div className="w-full h-full">
                         <Hyperspeed />
@@ -51,8 +51,8 @@ const Home = () => {
                 </div>
 
                 {/* Glassmorphism content card to make text pop while keeping background visible */}
-                <div className="relative z-10 text-center max-w-5xl bg-black/30  border border-white/10 p-8 md:p-16 rounded-3xl shadow-2xl -mt-10 mx-4">
-                    <h1 className="text-5xl sm:text-7xl font-extrabold leading-tight tracking-tight text-white mb-6">
+                <div className="relative z-10 text-center max-w-4xl bg-black/20  border border-white/10 p-8 md:p-12 rounded-3xl shadow-2xl mx-4">
+                    <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight text-white mb-6 drop-shadow-lg">
                         Explore Events That
                         <br />
                         <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-500 bg-clip-text text-transparent drop-shadow-sm">
@@ -60,7 +60,7 @@ const Home = () => {
                         </span>
                     </h1>
 
-                    <p className="text-gray-300 mt-6 text-lg sm:text-2xl font-medium max-w-2xl mx-auto">
+                    <p className="text-gray-300 mt-6 text-lg sm:text-xl md:text-2xl font-medium max-w-2xl mx-auto drop-shadow">
                         Discover local events, epic concerts, and unforgettable experiences happening around you.
                     </p>
 
