@@ -379,7 +379,17 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
           fogNear: { value: fog.near },
           fogFar: { value: fog.far }
         };
-        this.clock = new THREE.Clock();
+        this.clock = {
+          startTime: performance.now(),
+          oldTime: performance.now(),
+          get elapsedTime() { return (performance.now() - this.startTime) / 1000; },
+          getDelta() {
+            const now = performance.now();
+            const delta = (now - this.oldTime) / 1000;
+            this.oldTime = now;
+            return delta;
+          }
+        };
         this.assets = {};
         this.disposed = false;
 
@@ -454,8 +464,8 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
           this.camera,
           new SMAAEffect({
             preset: SMAAPreset.MEDIUM,
-            searchImage: SMAAEffect.searchImageDataURL,
-            areaImage: SMAAEffect.areaImageDataURL
+            searchImage: this.assets.smaa.search,
+            areaImage: this.assets.smaa.area
           })
         );
         this.renderPass.renderToScreen = false;
@@ -492,6 +502,7 @@ const Hyperspeed = ({ effectOptions = DEFAULT_EFFECT_OPTIONS }) => {
       }
 
       init() {
+        if (this.disposed) return;
         this.initPasses();
         const options = this.options;
         this.road.init();
